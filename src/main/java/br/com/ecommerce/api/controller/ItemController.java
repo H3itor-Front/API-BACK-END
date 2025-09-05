@@ -21,7 +21,7 @@ public class ItemController {
 
     // Listar Todos
     @GetMapping
-    public ResponseEntity<List<item>> listarPedido() {
+    public ResponseEntity<List<Item>> listarPedido() {
         // 1. Pegar a Lista de clientes
         List<Item> item = itemService.listarTodos();
 
