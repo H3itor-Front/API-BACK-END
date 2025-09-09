@@ -12,6 +12,7 @@ import java.time.OffsetDateTime;
 @Table(name = "pagamento", schema = "ecommerce")
 public class Pagamento {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pagamento", nullable = false)
     private Integer id;
 

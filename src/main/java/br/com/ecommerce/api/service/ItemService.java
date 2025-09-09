@@ -20,5 +20,7 @@ public class ItemService {
 
         return itemRepository.findAll();
     }
-
+    public Item cadastrarItem(Item it) {
+        return itemRepository.save(it);
+    }
 }

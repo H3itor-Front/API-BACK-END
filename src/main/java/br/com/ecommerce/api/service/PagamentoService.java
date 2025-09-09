@@ -1,7 +1,7 @@
 package br.com.ecommerce.api.service;
 
-import br.com.ecommerce.api.repository.PagamentoRepository;
 import br.com.ecommerce.api.model.Pagamento;
+import br.com.ecommerce.api.repository.PagamentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,5 +20,7 @@ public class PagamentoService {
 
         return pagamentoRepository.findAll();
     }
-
+    public Pagamento cadastrarPagamento(Pagamento pg) {
+        return pagamentoRepository.save(pg);
+    }
 }

@@ -1,16 +1,16 @@
 package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.Pedido;
+import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.service.PedidoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/produto")
+@RequestMapping("/api/pedido")
 public class PedidoController {
 
     private final PedidoService pedidoService;
@@ -26,5 +26,11 @@ public class PedidoController {
         List<Pedido> pedido = pedidoService.listarTodos();
 
         return ResponseEntity.ok(pedido);
+    }
+    @PostMapping
+    public ResponseEntity<Pedido> cadastrarPedido(@RequestBody Pedido pedido) {
+        pedido = pedidoService.cadastrarPedido(pedido);
+        // Codigo 201 - CREATED
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
     }
 }
