@@ -27,10 +27,10 @@ public class ItemController {
 
         return ResponseEntity.ok(item);
     }
-    @PostMapping
-    public ResponseEntity<Item> cadastrarItem(@RequestBody Item item) {
-        item = itemService.cadastrarItem(item);
-        // Codigo 201 - CREATED
-        return ResponseEntity.status(HttpStatus.CREATED).body(item);
-    }
+//    @PostMapping
+//    public ResponseEntity<Item> cadastrarItem(@RequestBody Item item) {
+//        item = itemService.cadastrarItem(item);
+//        // Codigo 201 - CREATED
+//        return ResponseEntity.status(HttpStatus.CREATED).body(item);
+//    }
 }

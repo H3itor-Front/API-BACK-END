@@ -24,5 +24,17 @@ public class ClienteService {
     public Cliente cadastrarCliente(Cliente cl) {
         return clienteRepository.save(cl);
     }
+    public Cliente buscarPorid(int id){
+
+        return clienteRepository.findById(id).orElse(null);
+    }
+    public Cliente deletarCliente(int id) {
+        Cliente cl = buscarPorid(id);
+        if (cl == null) {
+            return null;
+        }
+        clienteRepository.delete(cl);
+        return cl;
+    }
 
 }

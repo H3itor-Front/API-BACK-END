@@ -40,4 +40,25 @@ public class ClienteController {
          return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
      }
 
+     @GetMapping("/{id}")
+    public ResponseEntity<?> buscarClientePorId(@PathVariable int id){
+        Cliente cl = clienteService.buscarPorid(id);
+
+        if (cl == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente " + id + "não encontrado");
+        }
+        return ResponseEntity.ok(cl);
+     }
+
+     @DeleteMapping("/{id}")
+
+     public ResponseEntity<?> deletarCliente(@PathVariable int id){
+         Cliente cl = clienteService.buscarPorid(id);
+
+         if (cl == null) {
+             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente " + id + "Deletado");
+         }
+         return ResponseEntity.ok(cl);
+     }
+
 }
