@@ -1,5 +1,6 @@
 package br.com.ecommerce.api.service;
 
+import br.com.ecommerce.api.model.Item;
 import br.com.ecommerce.api.model.Pagamento;
 import br.com.ecommerce.api.repository.PagamentoRepository;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,17 @@ public class PagamentoService {
     }
     public Pagamento cadastrarPagamento(Pagamento pg) {
         return pagamentoRepository.save(pg);
+    }
+    public Pagamento buscarPorid(int id){
+
+        return pagamentoRepository.findById(id).orElse(null);
+    }
+    public Pagamento deletarPagamento(int id) {
+        Pagamento pg = buscarPorid(id);
+        if (pg == null) {
+            return null;
+        }
+        pagamentoRepository.delete(pg);
+        return pg;
     }
 }

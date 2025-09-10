@@ -34,4 +34,25 @@ public class ProdutoController {
         // Codigo 201 - CREATED
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarProdutoPorId(@PathVariable int id){
+        Produto pr = produtoService.buscarPorid(id);
+
+        if (pr == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto " + id + "não encontrado");
+        }
+        return ResponseEntity.ok(pr);
+    }
+
+    @DeleteMapping("/{id}")
+
+    public ResponseEntity<?> deletarProduto(@PathVariable int id){
+        Produto pr = produtoService.deletarProduto(id);
+
+        if (pr == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto " + id + " Não encontrado");
+        }
+        return ResponseEntity.ok(pr);
+    }
 }

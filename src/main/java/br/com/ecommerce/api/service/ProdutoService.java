@@ -24,4 +24,16 @@ public class ProdutoService {
     public Produto cadastrarProduto(Produto pr) {
         return produtoRepository.save(pr);
     }
+    public Produto buscarPorid(int id){
+
+        return produtoRepository.findById(id).orElse(null);
+    }
+    public Produto deletarProduto(int id) {
+        Produto pr = buscarPorid(id);
+        if (pr == null) {
+            return null;
+        }
+        produtoRepository.delete(pr);
+        return pr;
+    }
 }

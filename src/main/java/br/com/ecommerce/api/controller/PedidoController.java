@@ -1,5 +1,6 @@
 package br.com.ecommerce.api.controller;
 
+import br.com.ecommerce.api.model.Item;
 import br.com.ecommerce.api.model.Pedido;
 import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.service.PedidoService;
@@ -32,5 +33,25 @@ public class PedidoController {
         pedido = pedidoService.cadastrarPedido(pedido);
         // Codigo 201 - CREATED
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPedidoPorId(@PathVariable int id){
+        Pedido pd = pedidoService.buscarPorid(id);
+
+        if (pd == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pedido " + id + " não encontrado");
+        }
+        return ResponseEntity.ok(pd);
+    }
+
+    @DeleteMapping("/{id}")
+
+    public ResponseEntity<?> deletarPedido(@PathVariable int id){
+        Pedido pd = pedidoService.deletarPedido(id);
+
+        if (pd == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pedido " + id + " Não encontrado");
+        }
+        return ResponseEntity.ok(pd);
     }
 }

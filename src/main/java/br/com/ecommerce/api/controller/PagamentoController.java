@@ -1,5 +1,6 @@
 package br.com.ecommerce.api.controller;
 
+import br.com.ecommerce.api.model.Item;
 import br.com.ecommerce.api.model.Pagamento;
 import br.com.ecommerce.api.service.PagamentoService;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,26 @@ public class PagamentoController {
         pagamento = pagamentoService.cadastrarPagamento(pagamento);
         // Codigo 201 - CREATED
         return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarItemPorId(@PathVariable int id){
+        Pagamento pg = pagamentoService.buscarPorid(id);
+
+        if (pg == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pagamento " + id + " não encontrado");
+        }
+        return ResponseEntity.ok(pg);
+    }
+
+    @DeleteMapping("/{id}")
+
+    public ResponseEntity<?> deletarPagamento(@PathVariable int id){
+        Pagamento pg= pagamentoService.deletarPagamento(id);
+
+        if (pg == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pagamento " + id + " Não encontrado");
+        }
+        return ResponseEntity.ok(pg);
     }
 }

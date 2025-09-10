@@ -1,6 +1,7 @@
 package br.com.ecommerce.api.service;
 
 
+import br.com.ecommerce.api.model.Item;
 import br.com.ecommerce.api.model.Pedido;
 import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.repository.PedidoRepository;
@@ -25,5 +26,17 @@ public class PedidoService {
 
     public Pedido cadastrarPedido(Pedido pe) {
         return pedidoRepository.save(pe);
+    }
+    public Pedido buscarPorid(int id){
+
+        return pedidoRepository.findById(id).orElse(null);
+    }
+    public Pedido deletarPedido(int id) {
+        Pedido pd = buscarPorid(id);
+        if (pd == null) {
+            return null;
+        }
+        pedidoRepository.delete(pd);
+        return pd;
     }
 }

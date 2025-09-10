@@ -21,5 +21,21 @@ public class ItemService {
 
         return itemRepository.findAll();
     }
+    public Item cadastrarItem(Item it) {
+        return itemRepository.save(it);
+    }
+
+    public Item buscarPorid(int id){
+
+        return itemRepository.findById(id).orElse(null);
+    }
+    public Item deletarItem(int id) {
+        Item it = buscarPorid(id);
+        if (it == null) {
+            return null;
+        }
+        itemRepository.delete(it);
+        return it;
+    }
 }
 

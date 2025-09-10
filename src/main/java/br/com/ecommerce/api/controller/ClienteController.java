@@ -53,10 +53,10 @@ public class ClienteController {
      @DeleteMapping("/{id}")
 
      public ResponseEntity<?> deletarCliente(@PathVariable int id){
-         Cliente cl = clienteService.buscarPorid(id);
+         Cliente cl = clienteService.deletarCliente(id);
 
          if (cl == null) {
-             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente " + id + "Deletado");
+             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente " + id + " Não encontrado");
          }
          return ResponseEntity.ok(cl);
      }
