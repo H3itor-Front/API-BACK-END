@@ -36,5 +36,18 @@ public class ClienteService {
         clienteRepository.delete(cl);
         return cl;
     }
+    public Cliente atualizarCliente(int id, Cliente clienteNovo) {
+       Cliente clienteAntigo = buscarPorid(id);
+
+       if (clienteAntigo == null) {
+           return null;
+       }
+       clienteAntigo.setSenha(clienteNovo.getSenha());
+       clienteAntigo.setNomeCompleto(clienteNovo.getNomeCompleto());
+       clienteAntigo.setEmail(clienteNovo.getEmail());
+       clienteAntigo.setTelefone(clienteNovo.getTelefone());
+       clienteAntigo.setDataCadastro(clienteNovo.getDataCadastro());
+       return clienteRepository.save(clienteAntigo);
+    }
 
 }
